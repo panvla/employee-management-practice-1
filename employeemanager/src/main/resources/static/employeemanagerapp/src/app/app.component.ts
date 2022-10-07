@@ -40,11 +40,12 @@ export class AppComponent implements OnInit {
     }
     
     if(mode === 'edit'){
-      button.setAttribute('data-target', '#editEmployeeModal');
+      button.setAttribute('data-bs-target', '#updateEmployeeModal');
+      console.log("edit"); 
     }
     
     if(mode === 'delete'){
-      button.setAttribute('data-target', '#deleteEmployeeModal');
+      button.setAttribute('data-bs-target', '#deleteEmployeeModal');
     }
     container.appendChild(button);
     button.click();
