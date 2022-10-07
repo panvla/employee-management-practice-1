@@ -18,7 +18,7 @@ public class EmployeemanagerApplication {
 
 	@Bean
 	public CorsFilter corsFilter() {
-
+		//from stackoverflow
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.addAllowedOrigin("http://localhost:4200");
 		configuration.setAllowedOrigins(Arrays.asList("*"));
