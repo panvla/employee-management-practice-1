@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+
 @RequestMapping("/employee")
 public class EmployeeController {
     private final EmployeeService employeeService;
@@ -33,7 +34,6 @@ public class EmployeeController {
         Employee newEmployee = employeeService.addEmployee(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
-
     @PutMapping("")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
         Employee updateEmployee = employeeService.updateEmployee(employee);

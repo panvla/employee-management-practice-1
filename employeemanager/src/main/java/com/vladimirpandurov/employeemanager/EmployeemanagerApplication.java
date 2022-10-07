@@ -18,17 +18,15 @@ public class EmployeemanagerApplication {
 
 	@Bean
 	public CorsFilter corsFilter() {
+
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.addAllowedOrigin("http://localhost:4200");
+		configuration.setAllowedOrigins(Arrays.asList("*"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+		configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+		configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:4200");
-		config.addAllowedHeader("Access-Control-Allow-Origin");
-		config.addAllowedMethod("OPTIONS");
-		config.addAllowedMethod("GET");
-		config.addAllowedMethod("POST");
-		config.addAllowedMethod("PUT");
-		config.addAllowedMethod("DELETE");
-		source.registerCorsConfiguration("/**", config);
+		source.registerCorsConfiguration("/**", configuration);
 		return new CorsFilter(source);
 	}
 
