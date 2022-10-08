@@ -13,6 +13,7 @@ import { EmployeeService } from './employee.service';
 export class AppComponent implements OnInit {
   
   public employees: Employee[];
+  public editEmployee: Employee;
 
   constructor(private employeeService: EmployeeService){}
 
@@ -37,11 +38,24 @@ export class AppComponent implements OnInit {
       (response: Employee)=>{
         console.log(response);
         this.getEmployees();
+        addForm.reset();
       },
       (error: HttpErrorResponse)=>{
         alert(error.message);
       }
     )
+  }
+
+  public onUpdateEmployee(employee: Employee): void{
+    this.employeeService.updateEmployee(employee).subscribe(
+      (response: Employee)=>{
+        console.log(response);
+        this.getEmployees();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   public onOpenModal(employee: Employee , mode: string): void{
@@ -55,6 +69,7 @@ export class AppComponent implements OnInit {
     }
     
     if(mode === 'edit'){
+      this.editEmployee = employee;
       button.setAttribute('data-bs-target', '#updateEmployeeModal');
       console.log("edit"); 
     }
